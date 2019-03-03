@@ -13,7 +13,6 @@ export default class StudentDetails extends React.Component<Props, {}> {
       <StudentDetailViewQueryComponent variables={{ id }}>
         {({ data }) => {
           if (data) {
-            console.log(data);
             const { student } = data;
             if (student) {
               return (
