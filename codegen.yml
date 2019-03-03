@@ -1,0 +1,12 @@
+overwrite: true
+schema: http://localhost:8001/graphql
+documents: "**/*.graphql"
+noNamespaces: true
+generates:
+    src/queries/components.tsx:
+        config:
+            noNamespaces: true
+        plugins:
+            - "typescript-common"
+            - "typescript-client"
+            - "typescript-react-apollo"

@@ -1,0 +1,7 @@
+#import "./fragments/student-detailed-fragment.graphql"
+
+query StudentDetailViewQuery($id: ID!) {
+  student(id: $id) {
+    ...StudentDetailed
+  }
+}

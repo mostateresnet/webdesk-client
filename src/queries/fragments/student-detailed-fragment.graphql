@@ -1,0 +1,15 @@
+fragment StudentDetailed on StudentType {
+  id
+  phoneNumber
+  acceptsSms
+  note
+  firstName
+  middleName
+  lastName
+  gender
+  roomTitle
+  email
+  station {
+    name
+  }
+}

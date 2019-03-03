@@ -4,19 +4,41 @@
   "private": true,
   "dependencies": {
     "@types/jest": "24.0.9",
+    "@types/lodash": "^4.14.121",
     "@types/node": "11.10.4",
     "@types/react": "16.8.6",
     "@types/react-dom": "16.8.2",
+    "@types/react-router-dom": "^4.3.1",
+    "apollo-cache-inmemory": "^1.5.1",
+    "apollo-client": "^2.5.1",
+    "apollo-link": "^1.2.8",
+    "apollo-link-error": "^1.1.7",
+    "apollo-link-http": "^1.5.11",
+    "graphql": "^14.1.1",
+    "graphql-codegen-typescript-client": "^0.18.0",
+    "graphql-codegen-typescript-common": "^0.18.0",
+    "graphql-codegen-typescript-react-apollo": "^0.18.0",
+    "graphql-tag": "^2.10.1",
+    "lodash": "^4.17.11",
     "react": "^16.8.3",
+    "react-apollo": "^2.5.1",
     "react-dom": "^16.8.3",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
+    "react-toastify": "^4.5.2",
     "typescript": "3.3.3333"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "tabWidth": 2,
+    "trailingComma": "all"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codegen": "DEBUG=true gql-gen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -26,5 +48,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "graphql-code-generator": "^0.18.0",
+    "prettier": "^1.16.4"
+  }
 }
