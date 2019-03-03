@@ -6,7 +6,7 @@ import { onError } from "apollo-link-error";
 import { toast } from "react-toastify";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { DEBUG } from "./env";
+import { DEBUG, DEV_SERVER_PORT } from "./env";
 
 export const client = new ApolloClient({
   link: ApolloLink.from([
@@ -52,7 +52,7 @@ export const client = new ApolloClient({
       return forward(operation);
     }),
     new HttpLink({
-      uri: "http://localhost:8000/graphql",
+      uri: `http://localhost:${DEV_SERVER_PORT}/graphql`,
       credentials: "same-origin",
     }),
   ]),

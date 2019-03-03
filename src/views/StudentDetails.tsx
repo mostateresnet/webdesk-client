@@ -30,8 +30,8 @@ export default class StudentDetails extends React.Component<Props, {}> {
                 </ul>
               );
             }
-            return <div>Student not found!</div>;
           }
+          return <div>Student not found!</div>;
         }}
       </StudentDetailViewQueryComponent>
     );

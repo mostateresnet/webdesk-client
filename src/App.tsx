@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
 
-import "./App.css";
+import "./App.scss";
 import Dashboard from "./views/Dashboard";
 import StudentDetails from "./views/StudentDetails";
 import { ToastContainer, Flip } from "react-toastify";
