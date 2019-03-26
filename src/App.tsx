@@ -7,6 +7,9 @@ import Dashboard from "./views/Dashboard";
 import StudentDetails from "./views/StudentDetails";
 import { ToastContainer, Flip } from "react-toastify";
 import { client } from "./client";
+import { SideNav } from "./components/SideNav";
+import { navItems } from "./navitems";
+import { Header } from "./components/Header";
 
 function getCurrentUsersStation(): string {
   return "1";
@@ -17,7 +20,7 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <Router>
-          <div>
+          <div className="app">
             <ToastContainer
               transition={Flip}
               position="top-center"
@@ -27,15 +30,19 @@ class App extends Component {
               draggable
               pauseOnHover
             />
-            <Route
-              path="/"
-              exact
-              render={() => <Dashboard stationId={getCurrentUsersStation()} />}
-            />
-            <Route
-              path="/students/:id"
-              render={({ match }) => <StudentDetails id={match.params.id} />}
-            />
+            <SideNav navItems={navItems} />
+            <Header title={"Hello"} />
+            <div className="main-content">
+              <Route
+                path="/"
+                exact
+                render={() => <Dashboard stationId={getCurrentUsersStation()} />}
+              />
+              <Route
+                path="/students/:id"
+                render={({ match }) => <StudentDetails id={match.params.id} />}
+              />
+            </div>
           </div>
         </Router>
       </ApolloProvider>
