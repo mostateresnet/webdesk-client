@@ -26,10 +26,9 @@ class HeaderNoRouter extends React.PureComponent<Props, {}> {
           large={true}
           leftIcon="search"
           onChange={this.onStudenSearch}
-          placeholder="Search..."
+          placeholder="Student ID"
           value={this.props.searchValue}
         />
-        <div className="searchbox">Search...</div>
       </div>
     );
   }
