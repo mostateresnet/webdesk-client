@@ -1,23 +1,38 @@
 import * as React from "react";
-import { Route } from "react-router";
-import { navItems } from "../navitems";
+import { withRouter, RouteComponentProps } from "react-router";
+import { InputGroup } from "@blueprintjs/core";
 
-interface Props {
-  title: string;
+import { navItemMap } from "../navitems";
+
+interface Props extends RouteComponentProps {
+  searchValue: string;
+
+  onStudentSearch: (search: string) => void;
 }
 
-export class Header extends React.Component<Props, {}> {
+class HeaderNoRouter extends React.PureComponent<Props, {}> {
+  private onStudenSearch = (e: React.ChangeEvent<HTMLElement>) => {
+    this.props.onStudentSearch(e.currentTarget.nodeValue || "");
+  };
+
   render() {
-    const { title } = this.props;
+    const currentNavItem = navItemMap[this.props.location.pathname];
+    const title = currentNavItem ? currentNavItem.title : "";
     return (
       <div className="header">
-        <div className="title">
-          {navItems.map(item => (
-            <Route key={item.to} exact path={item.to} render={() => item.title} />
-          ))}
-        </div>
+        <div className="title">{title}</div>
+        <InputGroup
+          className="searchbox"
+          large={true}
+          leftIcon="search"
+          onChange={this.onStudenSearch}
+          placeholder="Search..."
+          value={this.props.searchValue}
+        />
         <div className="searchbox">Search...</div>
       </div>
     );
   }
 }
+
+export const Header = withRouter(HeaderNoRouter);

@@ -1,4 +1,13 @@
-export const navItems = [
+export interface NavItem {
+  title: string;
+  to: string;
+}
+
+export interface NavItemMap {
+  [to: string]: NavItem;
+}
+
+export const navItems: NavItem[] = [
   {
     title: "Daybook",
     to: "/daybook",
@@ -28,3 +37,11 @@ export const navItems = [
     to: "/logout",
   },
 ];
+
+export const navItemMap: NavItemMap = navItems.reduce(
+  (o, i) => {
+    o[i.to] = i;
+    return o;
+  },
+  {} as any,
+);

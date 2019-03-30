@@ -15,12 +15,29 @@ function getCurrentUsersStation(): string {
   return "1";
 }
 
-class App extends Component {
+interface Props {}
+interface State {
+  studentSearch: string;
+}
+
+class App extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      studentSearch: "",
+    };
+  }
+
+  private onStudentSearch = (s: string) => {
+    this.setState({ studentSearch: s });
+  };
+
   render() {
     return (
       <ApolloProvider client={client}>
         <Router>
-          <div className="app">
+          <div>
             <ToastContainer
               transition={Flip}
               position="top-center"
@@ -30,18 +47,23 @@ class App extends Component {
               draggable
               pauseOnHover
             />
-            <SideNav navItems={navItems} />
-            <Header title={"Hello"} />
-            <div className="main-content">
-              <Route
-                path="/"
-                exact
-                render={() => <Dashboard stationId={getCurrentUsersStation()} />}
+            <div className="app">
+              <SideNav navItems={navItems} />
+              <Header
+                searchValue={this.state.studentSearch}
+                onStudentSearch={this.onStudentSearch}
               />
-              <Route
-                path="/students/:id"
-                render={({ match }) => <StudentDetails id={match.params.id} />}
-              />
+              <div className="main-content">
+                <Route
+                  path="/"
+                  exact
+                  render={() => <Dashboard stationId={getCurrentUsersStation()} />}
+                />
+                <Route
+                  path="/students/:id"
+                  render={({ match }) => <StudentDetails id={match.params.id} />}
+                />
+              </div>
             </div>
           </div>
         </Router>
