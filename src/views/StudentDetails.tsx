@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { StudentDetailViewQueryComponent } from "../queries/components";
+import { setHeaderTitle } from "../components/Header";
 
 interface Props {
   id: string;
@@ -15,6 +16,7 @@ export default class StudentDetails extends React.Component<Props, {}> {
           if (data) {
             const { student } = data;
             if (student) {
+              setHeaderTitle(`${student.firstName} ${student.lastName}`);
               return (
                 <ul>
                   <li>ID: {student.id}</li>

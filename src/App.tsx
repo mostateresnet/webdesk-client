@@ -1,38 +1,19 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
 
 import "./App.scss";
-import Dashboard from "./views/Dashboard";
 import StudentDetails from "./views/StudentDetails";
 import { ToastContainer, Flip } from "react-toastify";
 import { client } from "./client";
 import { SideNav } from "./components/SideNav";
-import { navItems } from "./navitems";
+import { navItems, DEFAULT_VIEW } from "./navitems";
 import { Header } from "./components/Header";
 
-function getCurrentUsersStation(): string {
-  return "1";
-}
-
 interface Props {}
-interface State {
-  studentSearch: string;
-}
+interface State {}
 
 class App extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      studentSearch: "",
-    };
-  }
-
-  private onStudentSearch = (s: string) => {
-    this.setState({ studentSearch: s });
-  };
-
   render() {
     return (
       <ApolloProvider client={client}>
@@ -49,16 +30,9 @@ class App extends Component<Props, State> {
             />
             <div className="app">
               <SideNav navItems={navItems} />
-              <Header
-                searchValue={this.state.studentSearch}
-                onStudentSearch={this.onStudentSearch}
-              />
+              <Header />
               <div className="main-content">
-                <Route
-                  path="/"
-                  exact
-                  render={() => <Dashboard stationId={getCurrentUsersStation()} />}
-                />
+                <Route exact path="/" render={() => <Redirect to={DEFAULT_VIEW} />} />
                 <Route
                   path="/students/:id"
                   render={({ match }) => <StudentDetails id={match.params.id} />}

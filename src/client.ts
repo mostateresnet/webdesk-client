@@ -41,7 +41,7 @@ export const client = new ApolloClient({
       const token = localStorage.getItem("token");
       if (token) {
         // add the authorization to the headers
-        operation.setContext(({ headers = {} }) => ({
+        operation.setContext(({ headers = {} }: { headers: any }) => ({
           headers: {
             ...headers,
             Authorization: `JWT ${token}`,
