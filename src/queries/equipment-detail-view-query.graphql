@@ -1,0 +1,7 @@
+#import "./fragments/equipment-detailed-fragment.graphql"
+
+query EquipmentDetailViewQuery($id: ID!) {
+  equipment(id: $id) {
+    ...EquipmentDetailed
+  }
+}

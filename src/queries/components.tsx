@@ -6,9 +6,24 @@ export enum StudentGender {
   F = "F",
 }
 
+/** The `DateTime` scalar type represents a DateTime value as specified by [iso8601](https://en.wikipedia.org/wiki/ISO_8601). */
+export type DateTime = any;
+
 // ====================================================
 // Documents
 // ====================================================
+
+export type EquipmentDetailViewQueryVariables = {
+  id: string;
+};
+
+export type EquipmentDetailViewQueryQuery = {
+  __typename?: "Query";
+
+  equipment: EquipmentDetailViewQueryEquipment;
+};
+
+export type EquipmentDetailViewQueryEquipment = EquipmentDetailedFragment;
 
 export type StudentDetailViewQueryVariables = {
   id: string;
@@ -21,6 +36,24 @@ export type StudentDetailViewQueryQuery = {
 };
 
 export type StudentDetailViewQueryStudent = StudentDetailedFragment;
+
+export type EquipmentDetailedFragment = {
+  __typename?: "EquipmentType";
+
+  id: string;
+
+  name: string;
+
+  billRate: number;
+
+  value: Maybe<number>;
+
+  comments: Maybe<string>;
+
+  addedDate: DateTime;
+
+  disabledDate: Maybe<DateTime>;
+};
 
 export type StudentDetailedFragment = {
   __typename?: "StudentType";
@@ -62,6 +95,18 @@ import * as ReactApollo from "react-apollo";
 // Fragments
 // ====================================================
 
+export const EquipmentDetailedFragmentDoc = gql`
+  fragment EquipmentDetailed on EquipmentType {
+    id
+    name
+    billRate
+    value
+    comments
+    addedDate
+    disabledDate
+  }
+`;
+
 export const StudentDetailedFragmentDoc = gql`
   fragment StudentDetailed on StudentType {
     id
@@ -84,6 +129,48 @@ export const StudentDetailedFragmentDoc = gql`
 // Components
 // ====================================================
 
+export const EquipmentDetailViewQueryDocument = gql`
+  query EquipmentDetailViewQuery($id: ID!) {
+    equipment(id: $id) {
+      ...EquipmentDetailed
+    }
+  }
+
+  ${EquipmentDetailedFragmentDoc}
+`;
+export class EquipmentDetailViewQueryComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<EquipmentDetailViewQueryQuery, EquipmentDetailViewQueryVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<EquipmentDetailViewQueryQuery, EquipmentDetailViewQueryVariables>
+        query={EquipmentDetailViewQueryDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type EquipmentDetailViewQueryProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<EquipmentDetailViewQueryQuery, EquipmentDetailViewQueryVariables>
+> &
+  TChildProps;
+export function EquipmentDetailViewQueryHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        EquipmentDetailViewQueryQuery,
+        EquipmentDetailViewQueryVariables,
+        EquipmentDetailViewQueryProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    EquipmentDetailViewQueryQuery,
+    EquipmentDetailViewQueryVariables,
+    EquipmentDetailViewQueryProps<TChildProps>
+  >(EquipmentDetailViewQueryDocument, operationOptions);
+}
 export const StudentDetailViewQueryDocument = gql`
   query StudentDetailViewQuery($id: ID!) {
     student(id: $id) {

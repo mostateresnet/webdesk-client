@@ -4,6 +4,7 @@ import { ApolloProvider } from "react-apollo";
 
 import "./App.scss";
 import StudentDetails from "./views/StudentDetails";
+import EquipmentDetails from "./views/EquipmentDetails";
 import { ToastContainer, Flip } from "react-toastify";
 import { client } from "./client";
 import { SideNav } from "./components/SideNav";
@@ -36,6 +37,10 @@ class App extends Component<Props, State> {
                 <Route
                   path="/students/:id"
                   render={({ match }) => <StudentDetails id={match.params.id} />}
+                />
+                <Route
+                  path="/equipment/:id"
+                  render={({ match }) => <EquipmentDetails id={match.params.id} />}
                 />
               </div>
             </div>

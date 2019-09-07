@@ -1,0 +1,14 @@
+fragment EquipmentDetailed on EquipmentType {
+  id
+  name
+  #category  # TODO schema doesn't exist yet
+  #timeLimit # TODO figure out how to deal with timedeltas
+  billRate
+  value
+  comments
+  #currentRental { # TODO schema doesn't exist yet
+  #
+  #}
+  addedDate
+  disabledDate
+}
