@@ -1,14 +1,16 @@
 fragment EquipmentDetailed on EquipmentType {
   id
   name
-  #category  # TODO schema doesn't exist yet
-  #timeLimit # TODO figure out how to deal with timedeltas
+  category {
+    id
+  }
+  timeLimit
   billRate
   value
   comments
-  #currentRental { # TODO schema doesn't exist yet
-  #
-  #}
+  currentRental {
+    id
+  }
   addedDate
   disabledDate
 }

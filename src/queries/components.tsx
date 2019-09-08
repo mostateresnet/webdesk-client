@@ -44,15 +44,33 @@ export type EquipmentDetailedFragment = {
 
   name: string;
 
+  category: EquipmentDetailedCategory;
+
+  timeLimit: number;
+
   billRate: number;
 
   value: Maybe<number>;
 
   comments: Maybe<string>;
 
+  currentRental: Maybe<EquipmentDetailedCurrentRental>;
+
   addedDate: DateTime;
 
   disabledDate: Maybe<DateTime>;
+};
+
+export type EquipmentDetailedCategory = {
+  __typename?: "EquipmentCategoryType";
+
+  id: string;
+};
+
+export type EquipmentDetailedCurrentRental = {
+  __typename?: "EquipmentRentalType";
+
+  id: string;
 };
 
 export type StudentDetailedFragment = {
@@ -99,9 +117,16 @@ export const EquipmentDetailedFragmentDoc = gql`
   fragment EquipmentDetailed on EquipmentType {
     id
     name
+    category {
+      id
+    }
+    timeLimit
     billRate
     value
     comments
+    currentRental {
+      id
+    }
     addedDate
     disabledDate
   }
