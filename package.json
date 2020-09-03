@@ -52,7 +52,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "graphql-code-generator": "^0.18.0",
+    "graphql-code-generator": "^0.18.2",
     "prettier": "^1.16.4"
   }
 }
